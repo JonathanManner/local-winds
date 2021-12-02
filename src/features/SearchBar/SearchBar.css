@@ -1,0 +1,6 @@
+.search-container .search-box {
+    height: 40px;
+    width: 250px;
+    background: url("../../images/search-icon.svg") no-repeat scroll 7px 7px;
+    padding-left: 40px;
+}
