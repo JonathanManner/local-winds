@@ -43,7 +43,7 @@ export const RenderTomorrow = (props) => {
                             <img src={tempIcon} alt="tempIcon" />{" "}
                             {weatherData.parameters.t.values}° {"  "}
                           </span>
-                          <span>
+                          <span style={{flex: 1}}>
                             <img src={windIcon} alt="windIcon" />{" "}
                             {weatherData.parameters.ws.values} (
                             {weatherData.parameters.gust.values}) m/s{" "}

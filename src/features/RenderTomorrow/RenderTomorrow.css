@@ -24,7 +24,7 @@
     flex-direction: column;
     border-radius: 3px;
     padding: 5px;
-    width: 20rem;
+    width: 17rem;
     margin: 10px;
     box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
 }
@@ -40,4 +40,14 @@
 .render-tomorrow .flex-inner-container {
     display: flex;
     margin: 1px;
+}
+
+.render-tomorrow .values {
+    display: flex;
+    width: 100%;
+}
+
+.render-tomorrow .values span:first-child {
+    display: inline-block;
+    width: 74px;
 }

@@ -6,15 +6,15 @@ import { SearchBar } from "../SearchBar/SearchBar";
 
 export const Options = () => {
   const [selectedDay, setSelectedDay] = useState("forecast");
-  const [locationID, setLocationID] = useState(4);
+  const [locationID, setLocationID] = useState(5);
 
   const handleSelectedDayChange = (selectedDay) => {
     setSelectedDay(selectedDay);
   };
 
-  const handleLocationChange = (locationID) => {
-    setLocationID(locationID);
-  };
+//   const handleLocationChange = (locationID) => {
+//     setLocationID(locationID);
+//   };
 
   const handleSearch = (locationID) => {
     setLocationID(locationID);
@@ -26,13 +26,13 @@ export const Options = () => {
         <div className="options-navbar">
           <div className="options">
             <div className="select-location">
-              <p>Plats</p>
+              {/* <p>Plats</p>
               <select
                 name="location"
                 value={locationID}
                 onChange={(event) => handleLocationChange(event.target.value)}
               >
-                {coordinates.map(coordinate => {
+                {coordinates.map((coordinate) => {
                   const location = coordinates[coordinate.id];
                   return (
                     <option value={coordinate.id} key={coordinate.id}>
@@ -40,9 +40,13 @@ export const Options = () => {
                     </option>
                   );
                 })}
-              </select>
+              </select> */}
             </div>
-              <SearchBar coordinates={coordinates} handleSearch={handleSearch} />
+            <SearchBar
+              coordinates={coordinates}
+              handleSearch={handleSearch}
+              setLocationID={setLocationID}
+            />
             <div className="select-interval">
               <p>Intervall:</p>
               <select

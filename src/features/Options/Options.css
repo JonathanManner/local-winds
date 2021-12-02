@@ -1,5 +1,6 @@
 .options {
     display: flex;
+    margin-top: 5px;
 }
 
 .options-wrap {
