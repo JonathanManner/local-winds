@@ -19,7 +19,7 @@ export const SearchBar = (props) => {
       setSearchTerm("");
     }
   };
-
+  
   return (
     <div className="search-container">
       <input
@@ -30,8 +30,9 @@ export const SearchBar = (props) => {
         onKeyPress={onEnter}
         placeholder="Sök och välj ort"
       />
-
+      
       <div className="dropdown-container">
+        {searchTerm !== "" && (
         <div>
           <div className="dropdown-list">
             {coordinates.map((coordinate, index) => {
@@ -54,6 +55,7 @@ export const SearchBar = (props) => {
             })}
           </div>
         </div>
+        )}
       </div>
     </div>
   );

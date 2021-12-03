@@ -4,6 +4,9 @@
     background: url("../../images/search-icon.svg") no-repeat scroll 7px 7px;
     padding-left: 40px;
     background-color: white;
+    border: solid 1px gray;
+    border-radius: 3px;
+    margin-right: 3px;
 }
 
 .dropdown-container {
@@ -15,6 +18,10 @@
     background-color: white;
     border: solid 1px gray;
     border-radius: 3px;
+}
+
+.search-container .dropdown-list:empty {
+    border: none;
 }
 
 .search-container .dropdown-list-item {

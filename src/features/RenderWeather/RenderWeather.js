@@ -4,6 +4,7 @@ import { coordinates } from "../../utilities/coordinates";
 import { RenderTomorrow } from "../RenderTomorrow/RenderTomorrow";
 import { RenderToday } from "../RenderToday/RenderToday";
 import "./RenderWeather.css";
+import { Welcome } from '../Welcome/Welcome';
 
 const formatData = (data) => {
   const weatherObject = {};
@@ -41,7 +42,7 @@ export const RenderWeather = (props) => {
     });
   }, [lon, lat]);
 
-  const renderComponent = () => {
+  const renderComponent = (location) => {
     if (isLoading) return "Loading...";
     return (
       <>
@@ -60,7 +61,7 @@ export const RenderWeather = (props) => {
       <h2>Väderprognos för: </h2>
 
       <h3>{coordinates[props.location]["location"]}</h3>
-      {renderComponent()}
+      {renderComponent(props.location)}
     </div>
   );
 };

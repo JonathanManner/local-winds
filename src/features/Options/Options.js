@@ -6,7 +6,7 @@ import { SearchBar } from "../SearchBar/SearchBar";
 
 export const Options = () => {
   const [selectedDay, setSelectedDay] = useState("forecast");
-  const [locationID, setLocationID] = useState(5);
+  const [locationID, setLocationID] = useState(0);
 
   const handleSelectedDayChange = (selectedDay) => {
     setSelectedDay(selectedDay);
@@ -48,7 +48,6 @@ export const Options = () => {
               setLocationID={setLocationID}
             />
             <div className="select-interval">
-              <p>Intervall:</p>
               <select
                 name="interval"
                 value={selectedDay}
