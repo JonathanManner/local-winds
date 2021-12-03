@@ -4,7 +4,6 @@ import { coordinates } from "../../utilities/coordinates";
 import { RenderTomorrow } from "../RenderTomorrow/RenderTomorrow";
 import { RenderToday } from "../RenderToday/RenderToday";
 import "./RenderWeather.css";
-import { Welcome } from '../Welcome/Welcome';
 
 const formatData = (data) => {
   const weatherObject = {};
