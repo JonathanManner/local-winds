@@ -15,7 +15,7 @@ export const SearchBar = (props) => {
 
   const onEnter = ({ key }) => {
     if (key === "Enter") {
-      console.log("hejhej: " + key);
+      console.log(searchTerm, ": " + key);
       setSearchTerm("");
     }
   };

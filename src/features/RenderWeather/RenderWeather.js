@@ -18,6 +18,8 @@ export const RenderWeather = (props) => {
   const [weatherData, setWeatherData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  
+
   useEffect(() => {
     setIsLoading(true);
     fetchWeather(lon, lat).then((response) => {
@@ -39,6 +41,7 @@ export const RenderWeather = (props) => {
       tempData.futureData = sortedData;
       setWeatherData(tempData.futureData);
     });
+    
   }, [lon, lat]);
 
   const renderComponent = (location) => {
