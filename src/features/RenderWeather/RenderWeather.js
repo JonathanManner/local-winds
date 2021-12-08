@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { isItLoading } from "../../store/actions/actions";
+import { storeWeather } from "../../store/actions/actions";
 import { fetchWeather } from "../../utilities/smhi";
 import { coordinates } from "../../utilities/coordinates";
 import { RenderTomorrow } from "../RenderTomorrow/RenderTomorrow";
@@ -15,15 +18,14 @@ const formatData = (data) => {
 
 export const RenderWeather = (props) => {
   const { lon, lat } = coordinates[props.location];
-  const [weatherData, setWeatherData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  
+  const dispatch = useDispatch();
+  const isLoading = useSelector(state => state.isLoading);
+  const weatherData = useSelector(state => state.weatherData);
 
   useEffect(() => {
-    setIsLoading(true);
+    dispatch(isItLoading(true));
     fetchWeather(lon, lat).then((response) => {
-      setIsLoading(false);
+      dispatch(isItLoading(false));
       const tempData = response;
       const sortedData = {};
       for (let i = 0; i < tempData.timeSeries.length; i++) {
@@ -39,10 +41,10 @@ export const RenderWeather = (props) => {
         }
       }
       tempData.futureData = sortedData;
-      setWeatherData(tempData.futureData);
+      dispatch(storeWeather(tempData.futureData));
     });
     
-  }, [lon, lat]);
+  }, [lon, lat, dispatch]);
 
   const renderComponent = (location) => {
     if (isLoading) return "Loading...";

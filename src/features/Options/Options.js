@@ -1,23 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { RenderWeather } from "../RenderWeather/RenderWeather";
 import "./Options.css";
 import { coordinates } from "../../utilities/coordinates";
 import { SearchBar } from "../SearchBar/SearchBar";
+import { useSelector, useDispatch } from "react-redux";
+import { selectLocation, selectDay } from "../../store/actions/actions";
 
 export const Options = () => {
-  const [selectedDay, setSelectedDay] = useState("forecast");
-  const [locationID, setLocationID] = useState(0);
+  // const [selectedDay, setSelectedDay] = useState("forecast");
+  const selectedDay = useSelector(state => state.selectedDay);
+  const locationID = useSelector(state => state.locationID);
+  const dispatch = useDispatch();
 
   const handleSelectedDayChange = (selectedDay) => {
-    setSelectedDay(selectedDay);
+    // setSelectedDay(selectedDay);
+    dispatch(selectDay(selectedDay));
   };
 
-//   const handleLocationChange = (locationID) => {
-//     setLocationID(locationID);
-//   };
-
-  const handleSearch = (locationID) => {
-    setLocationID(locationID);
+  const handleSearch = (_locationID) => {
+    dispatch(selectLocation(_locationID));
   };
 
   return (
@@ -25,28 +26,8 @@ export const Options = () => {
       <div className="options-wrap">
         <div className="options-navbar">
           <div className="options">
-            <div className="select-location">
-              {/* <p>Plats</p>
-              <select
-                name="location"
-                value={locationID}
-                onChange={(event) => handleLocationChange(event.target.value)}
-              >
-                {coordinates.map((coordinate) => {
-                  const location = coordinates[coordinate.id];
-                  return (
-                    <option value={coordinate.id} key={coordinate.id}>
-                      {location.location}
-                    </option>
-                  );
-                })}
-              </select> */}
-            </div>
-            <SearchBar
-              coordinates={coordinates}
-              handleSearch={handleSearch}
-              setLocationID={setLocationID}
-            />
+            <div className="select-location"></div>
+            <SearchBar coordinates={coordinates} handleSearch={handleSearch} />
             <div className="select-interval">
               <select
                 name="interval"

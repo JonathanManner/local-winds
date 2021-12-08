@@ -1,5 +1,3 @@
-
-
 export const fetchWeather = async (lon, lat) => {
   const url = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/${lon}/lat/${lat}/data.json`;
   try {
