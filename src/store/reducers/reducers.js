@@ -15,7 +15,7 @@ const appReducer = (state = initialState, action) => {
       return { ...state, isLoading: action.payload };
 
     case "SEARCH_TERM":
-      return { ...state, searchTerm: action.payload };
+      return { ...state, searchTerm: action.payload }; 
 
     default:
       return state;

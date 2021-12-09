@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setSearchTerm } from '../../store/actions/actions';
+import { selectLocation, setSearchTerm } from '../../store/actions/actions';
 
 export const DropDownItem = (props) => {
     const listItem = props.location;
@@ -9,7 +9,7 @@ export const DropDownItem = (props) => {
 
 
     const clearSearch = () => {
-        props.handleSearch(listItem.id)
+        dispatch(selectLocation(listItem.id));
         dispatch(setSearchTerm(''));
     }
     

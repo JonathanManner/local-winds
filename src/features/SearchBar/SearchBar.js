@@ -1,36 +1,56 @@
-import React from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { React, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./SearchBar.css";
 import { DropDownItem } from "../DropDownItem/DropDownItem";
-import { setSearchTerm } from "../../store/actions/actions";
+import { setSearchTerm, selectLocation } from "../../store/actions/actions";
 
 export const SearchBar = (props) => {
   const coordinates = props.coordinates;
-  const handleSearch = props.handleSearch;
   const dispatch = useDispatch();
+  const [currentItem, setCurrentItem] = useState(0);
+  const searchTerm = useSelector((state) => state.searchTerm);
 
-  const searchTerm = useSelector(state => state.searchTerm);
+  const filteredItems = coordinates.filter((coordinate) =>
+    coordinate.location.toLowerCase()
+  .includes(searchTerm));
+
+  const mouseEnter = () => {
+    setCurrentItem(-1);
+  }
 
   const onSearchInput = (e) => {
     const userInput = e.target.value;
     dispatch(setSearchTerm(userInput));
+    setCurrentItem(0);
   };
 
-  // const onEnter = ({ key }) => {
-  //   if (key === "Enter") {
-  //     console.log(searchTerm, ": " + key);
-  //     setSearchTerm("");
-  //   }
-  // };
+  const handleKeyPress = (e) => {
+    const keyPressed = e.key;
+    if (searchTerm !== "") {
+      if (keyPressed === "ArrowDown" && currentItem < filteredItems.length - 1) {
+        e.preventDefault();
+        setCurrentItem((current) => current + 1);
+      } else if (keyPressed === "ArrowUp" && currentItem > 0) {
+        e.preventDefault();
+        setCurrentItem((current) => current - 1);
+      } else if (keyPressed === "Enter") {
+        dispatch(setSearchTerm(""));
+        const selectedItem = filteredItems[currentItem];
+        dispatch(selectLocation(selectedItem.id));
+        setCurrentItem(0);
+      }
+    }
+    return;
+  };
 
   return (
     <div className="search-container">
       <input
+        onKeyDown={handleKeyPress}
         className="search-box"
         type="text"
         value={searchTerm}
         onChange={onSearchInput}
-        // onKeyPress={onEnter}
         placeholder="Sök och välj ort"
       />
 
@@ -38,21 +58,28 @@ export const SearchBar = (props) => {
         {searchTerm !== "" && (
           <div>
             <div className="dropdown-list">
-              {coordinates.map((coordinate, index) => {
-                return (
-                  <div key={"list-item-" + index}>
-                    {searchTerm !== "" && (
-                      <div className="dropdown-list-item">
-                        <DropDownItem
-                          location={coordinate}
-                          searchTerm={searchTerm}
-                          handleSearch={handleSearch}
-                        />
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+              {filteredItems.map((coordinate, index) => {
+                  return (
+                    <div 
+                    className="list-item" 
+                    key={"list-item-" + index} 
+                    style={
+                      {
+                        backgroundColor: currentItem === index ? "rgb(209, 209, 209)":"",
+                      }}
+                    onMouseEnter={mouseEnter}
+                    >
+                      {searchTerm !== "" && (
+                        <div className="dropdown-list-item">
+                          <DropDownItem
+                            location={coordinate}
+                            searchTerm={searchTerm}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
             </div>
           </div>
         )}

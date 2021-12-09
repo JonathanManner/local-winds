@@ -4,21 +4,15 @@ import "./Options.css";
 import { coordinates } from "../../utilities/coordinates";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
-import { selectLocation, selectDay } from "../../store/actions/actions";
+import { selectDay } from "../../store/actions/actions";
 
 export const Options = () => {
-  // const [selectedDay, setSelectedDay] = useState("forecast");
   const selectedDay = useSelector(state => state.selectedDay);
   const locationID = useSelector(state => state.locationID);
   const dispatch = useDispatch();
 
   const handleSelectedDayChange = (selectedDay) => {
-    // setSelectedDay(selectedDay);
     dispatch(selectDay(selectedDay));
-  };
-
-  const handleSearch = (_locationID) => {
-    dispatch(selectLocation(_locationID));
   };
 
   return (
@@ -27,7 +21,7 @@ export const Options = () => {
         <div className="options-navbar">
           <div className="options">
             <div className="select-location"></div>
-            <SearchBar coordinates={coordinates} handleSearch={handleSearch} />
+            <SearchBar coordinates={coordinates}/>
             <div className="select-interval">
               <select
                 name="interval"

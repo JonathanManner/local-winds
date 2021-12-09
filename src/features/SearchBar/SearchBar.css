@@ -1,10 +1,10 @@
 .search-container .search-box {
     height: 40px;
-    width: 250px;
+    width: 220px;
     background: url("../../images/search-icon.svg") no-repeat scroll 7px 7px;
     padding-left: 40px;
     background-color: white;
-    border: solid 1px gray;
+    border: solid 1px black;
     border-radius: 3px;
     margin-right: 3px;
 }
@@ -12,6 +12,10 @@
 .dropdown-container {
     /* display: flex;
     justify-content: flex-end; */
+}
+
+.search-container .list-item {
+    
 }
 
 .search-container .dropdown-list {
@@ -31,4 +35,10 @@
 .search-container .dropdown-list-item:hover {
     background-color: rgb(209, 209, 209);
     cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+    .search-container .search-box {
+        width: 200px;
+    }
 }
