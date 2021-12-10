@@ -14,10 +14,6 @@ export const SearchBar = (props) => {
     coordinate.location.toLowerCase()
   .includes(searchTerm.toLowerCase()));
 
-  const mouseEnter = () => {
-    setCurrentItem(-1);
-  }
-
   const onSearchInput = (e) => {
     const userInput = e.target.value;
     dispatch(setSearchTerm(userInput));
@@ -67,7 +63,8 @@ export const SearchBar = (props) => {
                       {
                         backgroundColor: currentItem === index ? "rgb(209, 209, 209)":"",
                       }}
-                    onMouseEnter={mouseEnter}
+                    onMouseEnter={() => setCurrentItem(index)}
+                    onMouseLeave={() => setCurrentItem(currentItem)}
                     >
                       {searchTerm !== "" && (
                         <div className="dropdown-list-item">
