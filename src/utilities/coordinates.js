@@ -39,3 +39,20 @@ export const coordinates = [
     {id: 37, location: 'Sävsjö', lon: 14.66, lat: 57.39},
     {id: 38, location: 'Åbo', lon: 22.28, lat: 60.45},
 ]
+
+// let locations = [];
+// coordinates.map((coordinate, index) => {
+//     return locations.push({id: index, location: coordinate.location, lon: coordinate.lon, lat: coordinate.lat})
+// })
+
+// const sortedList = locations.sort((a,b) => {
+//     if (a.location.toLowerCase() < b.location.toLowerCase()) {
+//         return -1;
+//     }
+//     if (a.location.toLowerCase() > b.location.toLowerCase()) {
+//         return 1;
+//     }
+//     return 0;
+// })
+// console.log(locations);
+// console.log(sortedList);

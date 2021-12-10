@@ -12,7 +12,7 @@ export const SearchBar = (props) => {
 
   const filteredItems = coordinates.filter((coordinate) =>
     coordinate.location.toLowerCase()
-  .includes(searchTerm));
+  .includes(searchTerm.toLowerCase()));
 
   const mouseEnter = () => {
     setCurrentItem(-1);

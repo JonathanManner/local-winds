@@ -10,6 +10,19 @@ export const RenderTomorrow = (props) => {
   const weather = props.weatherData;
   const isValidDate = (date) => weather[date].length >= 4;
   const dates = Object.keys(weather).slice(1).filter(isValidDate);
+
+  // const weekday = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag",]
+  // const getDayOfWeek = (daysToAdd = 0) => {
+  //   let days = daysToAdd;
+  //   const day = new Date().getDay();
+  //   if (daysToAdd + day > weekday.length) {
+  //     days = daysToAdd + day - weekday.length;
+  //   } else {
+  //     days = daysToAdd;
+  //   }
+  //   return weekday[days];
+  // }
+
   if (
     !weather ||
     typeof weather !== "object" ||
