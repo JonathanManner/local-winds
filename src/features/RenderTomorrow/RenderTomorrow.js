@@ -8,20 +8,21 @@ const TIMES_TO_SHOW = ["00:00", "06:00", "12:00", "18:00"];
 
 export const RenderTomorrow = (props) => {
   const weather = props.weatherData;
+  console.log(weather);
   const isValidDate = (date) => weather[date].length >= 4;
   const dates = Object.keys(weather).slice(1).filter(isValidDate);
 
-  // const weekday = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag",]
-  // const getDayOfWeek = (daysToAdd = 0) => {
-  //   let days = daysToAdd;
-  //   const day = new Date().getDay();
-  //   if (daysToAdd + day > weekday.length) {
-  //     days = daysToAdd + day - weekday.length;
-  //   } else {
-  //     days = daysToAdd;
-  //   }
-  //   return weekday[days];
-  // }
+  const weekday = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag",]
+  const getDayOfWeek = (daysToAdd = 0) => {
+    let days = daysToAdd;
+    const day = new Date().getDay();
+    if (daysToAdd + day > weekday.length) {
+      days = daysToAdd + day - weekday.length;
+    } else {
+      days = daysToAdd;
+    }
+    return weekday[days + day];
+  }
 
   if (
     !weather ||
