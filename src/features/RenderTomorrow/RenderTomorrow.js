@@ -12,17 +12,17 @@ export const RenderTomorrow = (props) => {
   const isValidDate = (date) => weather[date].length >= 4;
   const dates = Object.keys(weather).slice(1).filter(isValidDate);
 
-  const weekday = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag",]
-  const getDayOfWeek = (daysToAdd = 0) => {
-    let days = daysToAdd;
-    const day = new Date().getDay();
-    if (daysToAdd + day > weekday.length) {
-      days = daysToAdd + day - weekday.length;
-    } else {
-      days = daysToAdd;
-    }
-    return weekday[days + day];
-  }
+  // const weekday = ["Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag",]
+  // const getDayOfWeek = (daysToAdd = 0) => {
+  //   let days = daysToAdd;
+  //   const day = new Date().getDay();
+  //   if (days + day > weekday.length) {
+  //     days = days + day - weekday.length;
+  //   } else {
+  //     days = daysToAdd;
+  //   }
+  //   return weekday[days + day];
+  // }
 
   if (
     !weather ||
