@@ -9,15 +9,6 @@
     margin-right: 3px;
 }
 
-.dropdown-container {
-    /* display: flex;
-    justify-content: flex-end; */
-}
-
-.search-container .list-item {
-    
-}
-
 .search-container .dropdown-list {
     background-color: white;
     border: solid 1px gray;

@@ -1,10 +1,13 @@
 import React from "react";
 import "./RenderTomorrow.css";
+import moment from "moment";
+import 'moment/locale/sv';
 import tempIcon from "../../images/temp-icon.svg";
 import windIcon from "../../images/wind-icon.svg";
 import windArrow from "../../images/wind-arrow.svg";
 
 const TIMES_TO_SHOW = ["00:00", "06:00", "12:00", "18:00"];
+moment.locale('sv')
 
 export const RenderTomorrow = (props) => {
   const weather = props.weatherData;
@@ -38,7 +41,7 @@ export const RenderTomorrow = (props) => {
         return weather[weatherDate] && weather[weatherDate].length !== 0 ? (
           <React.Fragment key={"thisWeek-" + index}>
             <div className="flex-outer-container">
-              <div className="date">{weatherDate}</div>
+              <div className="date">{moment().add(index + 1, 'days').format('dddd')} {weatherDate}</div>
               {weather[weatherDate].map((weatherData, _index) => {
                 const time = weatherData.validTime.slice(
                   weatherData.validTime.indexOf("T") + 1,

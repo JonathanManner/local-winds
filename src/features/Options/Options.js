@@ -23,16 +23,15 @@ export const Options = () => {
             <div className="select-location"></div>
             <SearchBar coordinates={coordinates}/>
             <div className="select-interval">
-              <select
-                name="interval"
-                value={selectedDay}
-                onChange={(event) =>
-                  handleSelectedDayChange(event.target.value)
-                }
-              >
-                <option value="today">Idag</option>
-                <option value="forecast">5-dagars prognos</option>
-              </select>
+              <button
+              value={selectedDay}
+              class="options-button"
+              onClick={() =>
+                selectedDay === 'forecast' ?
+                handleSelectedDayChange('today') :
+                handleSelectedDayChange('forecast')
+              }
+              ><span>{selectedDay === 'forecast' ? 'Idag' : 'I veckan'}</span></button>
             </div>
           </div>
         </div>

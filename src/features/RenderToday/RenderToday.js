@@ -3,6 +3,7 @@ import "./RenderToday.css";
 import tempIcon from "../../images/temp-icon.svg";
 import windIcon from "../../images/wind-icon.svg";
 import windArrow from "../../images/wind-arrow.svg";
+import moment from 'moment';
 
 export const RenderToday = (props) => {
   const weather = props.weatherData;
@@ -31,7 +32,7 @@ export const RenderToday = (props) => {
                   return (
                     <div className="flex-outer-container" key={"values-" + _index}>
                       <div className="time">
-                        {_index === 0 ? "Now" : formattedDate}
+                        {_index === 0 ? moment().format('LT') : formattedDate}
                       </div>
                       <div className="values">
                         <React.Fragment key={_index}>

@@ -30,6 +30,36 @@
     height: 90%;
 }
 
+.options-button {
+    border-radius: 3px;
+    background-color: #fafaff;
+    border: solid 1px black;
+    color: black;
+    text-align: center;
+    font-size: 1rem;
+    padding: 10px;
+    width: 120px;
+    transition: all 0.5s;
+    cursor: pointer;
+  }
+  
+  .options-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .options-button span:after {
+    content: '\00bb';
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  
+
 .options-wrap .select-interval select {
     border: solid 1px black;
     border-radius: 3px;
@@ -41,3 +71,15 @@
         font-size: 1.2rem;
     }
 }
+
+@media screen and (min-width: 700px) {
+    .options-wrap button:hover {
+            padding-right: 25px;
+            background-color: #e9f1f8;
+          }
+          
+          .options-button:hover span:after {
+            opacity: 1;
+            right: 0;
+          }
+    }

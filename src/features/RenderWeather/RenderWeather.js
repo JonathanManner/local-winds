@@ -17,7 +17,9 @@ const formatData = (data) => {
 };
 
 export const RenderWeather = (props) => {
-  const { lon, lat } = coordinates[props.location];
+  const selectedDay = useSelector(state => state.selectedDay);
+  const locationID = useSelector(state => state.locationID);
+  const { lon, lat } = coordinates[locationID];
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.isLoading);
   const weatherData = useSelector(state => state.weatherData);
@@ -46,14 +48,14 @@ export const RenderWeather = (props) => {
     
   }, [lon, lat, dispatch]);
 
-  const renderComponent = (location) => {
+  const renderComponent = () => {
     if (isLoading) return "Loading...";
     return (
       <>
-        {props.interval === "today" && (
+        {selectedDay === "today" && (
           <RenderToday weatherData={weatherData} />
         )}
-        {props.interval === "forecast" && (
+        {selectedDay === "forecast" && (
           <RenderTomorrow weatherData={weatherData} />
         )}
       </>
@@ -62,10 +64,8 @@ export const RenderWeather = (props) => {
 
   return (
     <div className="render-weather-wrap">
-      <h2>Väderprognos för: </h2>
-
-      <h3>{coordinates[props.location]["location"]}</h3>
-      {renderComponent(props.location)}
+      <h3>Väderprognos för {coordinates[locationID].location} {selectedDay === 'forecast' ? 'i veckan' : 'idag'}</h3>
+      {renderComponent()}
     </div>
   );
 };

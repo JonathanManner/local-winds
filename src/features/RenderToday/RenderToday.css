@@ -5,16 +5,31 @@
     flex-direction: column;
 }
 
+.render-today .values img {
+    width: 17px;
+}
+
+.render-today .time {
+    margin-right: 5px;
+}
+
 .render-today .flex-outer-container {
     background-color: #e9f1f8;
     display: flex;
+    border: solid 1px rgb(206, 206, 206);
     border-radius: 3px;
     padding: 3px;
-    width: 20rem;
-    margin: 5px;
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+    width: 18rem;
+    margin: 3px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
 }
 
-/* .render-today .flex-outer-container:hover {
-    background-color: #1547744d;
-} */
+.render-today .values {
+    display: flex;
+    width: 100%;
+}
+
+.render-today .values span:first-child {
+    display: inline-block;
+    width: 74px;
+}
