@@ -4,7 +4,9 @@
 }
 
 .options-wrap {
-    background-color: #fafaff;
+    /* background-color: #ba22e0; */
+    background: linear-gradient(0deg, #e9f1f8 0%, #e9f1f8 100%);
+
 }
 
 .options-wrap .options-navbar {
@@ -75,7 +77,8 @@
 @media screen and (min-width: 700px) {
     .options-wrap button:hover {
             padding-right: 25px;
-            background-color: #e9f1f8;
+            /* background-color: #e9f1f8; */
+            
           }
           
           .options-button:hover span:after {

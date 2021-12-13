@@ -16,7 +16,7 @@ export const RenderToday = (props) => {
     weather.length === 0 ||
     dates.length === 0
   ) {
-    return "Loading...";
+    return (<div className="loading"><div>Loading...</div></div>);
   }
 
   return (

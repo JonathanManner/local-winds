@@ -61,7 +61,7 @@ export const SearchBar = (props) => {
                     key={"list-item-" + index} 
                     style={
                       {
-                        backgroundColor: currentItem === index ? "rgb(209, 209, 209)":"",
+                        backgroundColor: currentItem === index ? "#daeeff":"",
                       }}
                     onMouseEnter={() => setCurrentItem(index)}
                     onMouseLeave={() => setCurrentItem(currentItem)}

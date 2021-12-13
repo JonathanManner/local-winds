@@ -24,7 +24,7 @@
 }
 
 .search-container .dropdown-list-item:hover {
-    background-color: rgb(209, 209, 209);
+    background-color: #daeeff;
     cursor: pointer;
 }
 
@@ -32,4 +32,11 @@
     .search-container .search-box {
         width: 200px;
     }
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
 }
