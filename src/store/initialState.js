@@ -1,6 +1,6 @@
 const initialState = {
     selectedDay: 'forecast',
-    locationID: 47,
+    locationID: 48,
     weatherData: [],
     isLoading: false,
     searchTerm: '',
