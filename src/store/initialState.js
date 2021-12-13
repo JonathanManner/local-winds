@@ -1,6 +1,8 @@
+import { coordinates } from "../utilities/coordinates";
+
 const initialState = {
     selectedDay: 'forecast',
-    locationID: '0',
+    locationID: 47,
     weatherData: [],
     isLoading: false,
     searchTerm: '',
