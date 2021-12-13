@@ -1,5 +1,3 @@
-import { coordinates } from "../utilities/coordinates";
-
 const initialState = {
     selectedDay: 'forecast',
     locationID: 47,
