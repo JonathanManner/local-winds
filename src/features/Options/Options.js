@@ -15,6 +15,8 @@ export const Options = () => {
     dispatch(selectDay(selectedDay));
   };
 
+  
+
   return (
     <React.Fragment>
       <div className="options-wrap">
@@ -25,7 +27,7 @@ export const Options = () => {
             <div className="select-interval">
               <button
               value={selectedDay}
-              class="options-button"
+              className="options-button"
               onClick={() =>
                 selectedDay === 'forecast' ?
                 handleSelectedDayChange('today') :

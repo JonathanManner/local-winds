@@ -11,7 +11,6 @@ moment.locale('sv')
 
 export const RenderTomorrow = (props) => {
   const weather = props.weatherData;
-  console.log(weather);
   const isValidDate = (date) => weather[date].length >= 4;
   const dates = Object.keys(weather).slice(1).filter(isValidDate);
 
