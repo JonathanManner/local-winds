@@ -55,11 +55,11 @@ export const RenderTomorrow = (props) => {
                       </div>
                       <div className="values">
                         <React.Fragment key={_index}>
-                          <span>
+                          <span className="iconsAndData">
                             <img src={tempIcon} alt="tempIcon" />{" "}
                             {weatherData.parameters.t.values}° {"  "}
                           </span>
-                          <span style={{flex: 1}}>
+                          <span className="iconsAndData" style={{flex: 1}}>
                             <img src={windIcon} alt="windIcon" />{" "}
                             {weatherData.parameters.ws.values} (
                             {weatherData.parameters.gust.values}) m/s{" "}

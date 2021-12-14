@@ -33,7 +33,7 @@ export const Options = () => {
                 handleSelectedDayChange('today') :
                 handleSelectedDayChange('forecast')
               }
-              ><span>{selectedDay === 'forecast' ? 'Idag' : 'I veckan'}</span></button>
+              ><span>{selectedDay === 'forecast' ? 'Idag' : 'I veckan'}</span></button>         
             </div>
           </div>
         </div>

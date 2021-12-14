@@ -72,7 +72,29 @@
     .options-wrap h1 {
         font-size: 1.2rem;
     }
+    .options {
+        flex-wrap: wrap;
+    }
+
 }
+
+@media screen and (max-width: 340px) {
+    .options-wrap .options-navbar {
+        height: 100px;
+    }
+
+    .options-button {
+        height: 50%;
+        margin: 5px 0px;
+
+    }
+
+    .options {
+        display: flex;
+        justify-content: center;
+    }
+}
+
 
 @media screen and (min-width: 700px) {
     .options-wrap button:hover {

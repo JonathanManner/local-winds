@@ -43,3 +43,27 @@
     display: inline-block;
     width: 74px;
 }
+
+@media screen and (max-width: 700px) {
+    .render-tomorrow .values {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+}
+
+@media screen and (max-width: 320px) {
+    .render-tomorrow .flex-outer-container {
+        width: 95%;
+    }
+
+    .render-tomorrow .values span:first-child {
+        width: 30%;
+    
+    }
+    .iconsAndData {
+        display: flex;
+        /* flex-direction: column; */
+        display: inline-block;
+    }
+}
