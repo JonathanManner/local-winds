@@ -5,6 +5,16 @@ import 'moment/locale/sv';
 import tempIcon from "../../images/temp-icon.svg";
 import windIcon from "../../images/wind-icon.svg";
 import windArrow from "../../images/wind-arrow.svg";
+import Stack from '@mui/material/Stack';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 const TIMES_TO_SHOW = ["00:00", "06:00", "12:00", "18:00"];
 moment.locale('sv')
@@ -40,7 +50,13 @@ export const RenderTomorrow = (props) => {
         return weather[weatherDate] && weather[weatherDate].length !== 0 ? (
           <React.Fragment key={"thisWeek-" + index}>
             <div className="flex-outer-container">
-              <div className="date">{moment().add(index + 1, 'days').format('dddd')} {weatherDate}</div>
+            <Stack spacing={2}>
+              <Item
+              sx={{
+                backgroundColor: '#ffffff',
+                color: 'black'
+              }}>
+              <div className="date">{moment().add(index + 1, 'days').format('dddd').charAt(0).toUpperCase() + moment().add(index + 1, 'days').format('dddd').slice(1)} {weatherDate}</div>
               {weather[weatherDate].map((weatherData, _index) => {
                 const time = weatherData.validTime.slice(
                   weatherData.validTime.indexOf("T") + 1,
@@ -79,10 +95,13 @@ export const RenderTomorrow = (props) => {
                   </React.Fragment>
                 );
               })}
+              </Item>
+              </Stack>
             </div>
           </React.Fragment>
         ) : null;
       })}
+      <div className="spacer"></div>
     </div>
   );
 };
