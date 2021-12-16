@@ -1,32 +1,36 @@
 .render-tomorrow {
     display: flex;
-    /* flex-wrap: wrap; */
     align-items: center;
     flex-direction: column;
 }
 
 .render-tomorrow .date {
    margin-bottom: 5px;
-   border-bottom: solid 1px rgb(206, 206, 206); 
+   
+   background-color: rgba(240, 240, 240, 1);
+   box-shadow: 0px 0px 1px 0px;
+   
 }
 
 .render-tomorrow .values img {
     width: 17px;
 }
 
+.render-tomorrow .values {
+    display: flex;
+}
+
+.render-tomorrow .iconsAndData {
+    display: flex;
+}
+
 .render-tomorrow .time {
     margin-right: 5px;
+    /* border-right: solid 1px gray;
+    padding-right: 8px; */
 }
 
 .render-tomorrow .flex-outer-container {
-    /* background-color: #e9f1f8;
-    display: flex;
-    flex-direction: column;
-    border-radius: 3px;
-    padding: 5px;
-    width: 18rem;
-    margin: 5px;
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.2); */
     margin: 8px;
     width: 18em;
 }
@@ -34,10 +38,10 @@
 .render-tomorrow .flex-inner-container {
     display: flex;
     margin: 1px;
+    /* border-bottom: solid 1px rgb(206, 206, 206);  */
 }
 
 .render-tomorrow .values {
-    /* display: flex; */
     width: 100%;
 }
 
@@ -79,7 +83,6 @@
     }
     .iconsAndData {
         display: flex;
-        /* flex-direction: column; */
         display: inline-block;
     }
 }

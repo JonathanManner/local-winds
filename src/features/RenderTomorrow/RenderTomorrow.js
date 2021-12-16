@@ -17,7 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const TIMES_TO_SHOW = ["00:00", "06:00", "12:00", "18:00"];
-moment.locale('sv')
+moment.locale('sv');
 
 export const RenderTomorrow = (props) => {
   const weather = props.weatherData;
