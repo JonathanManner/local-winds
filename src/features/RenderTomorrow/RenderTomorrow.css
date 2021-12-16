@@ -28,6 +28,7 @@
     margin: 5px;
     box-shadow: 0px 2px 4px rgba(0,0,0,0.2); */
     margin: 16px;
+    width: 18em;
 }
 
 .render-tomorrow .flex-inner-container {
@@ -45,17 +46,31 @@
     width: 74px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 600px) {
     .render-tomorrow .values {
         display: flex;
         flex-wrap: wrap;
+    }
+
+    .render-tomorrow .flex-outer-container {
+        width: 75%;
+        margin: 8px;
+    }
+
+    .render-tomorrow .values{
+        width: 75%;
     }
     
 }
 
 @media screen and (max-width: 320px) {
     .render-tomorrow .flex-outer-container {
-        width: 95%;
+        width: 90%;
+        margin: 8px;
+    }
+
+    .render-tomorrow .values {
+        width: 100%;
     }
 
     .render-tomorrow .values span:first-child {

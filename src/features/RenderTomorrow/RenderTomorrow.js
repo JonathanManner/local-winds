@@ -54,7 +54,7 @@ export const RenderTomorrow = (props) => {
               <Item
               sx={{
                 backgroundColor: '#ffffff',
-                color: 'black'
+                color: 'black',
               }}>
               <div className="date">{moment().add(index + 1, 'days').format('dddd').charAt(0).toUpperCase() + moment().add(index + 1, 'days').format('dddd').slice(1)} {weatherDate}</div>
               {weather[weatherDate].map((weatherData, _index) => {

@@ -4,6 +4,16 @@ import tempIcon from "../../images/temp-icon.svg";
 import windIcon from "../../images/wind-icon.svg";
 import windArrow from "../../images/wind-arrow.svg";
 import moment from 'moment';
+import Stack from '@mui/material/Stack';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
+
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 export const RenderToday = (props) => {
   const weather = props.weatherData;
@@ -30,7 +40,22 @@ export const RenderToday = (props) => {
                     weatherHour.validTime.length - 4
                   );
                   return (
-                    <div className="flex-outer-container" key={"values-" + _index}>
+                    <div 
+                    className="flex-outer-container" 
+                    key={"values-" + _index}
+                    >
+                      <Stack spacing={2}>
+                      <Item
+                      className="items"
+                      sx={_index % 2 === 0 ? {
+                        width: "100%",
+                        borderRadius: "0px",
+                      } : {
+                        width: "100%",
+                        borderRadius: "0px",
+                        backgroundColor: "rgba(240, 240, 240, 1)",
+                      } }
+                      >
                       <div className="time">
                         {_index === 0 ? moment().format('LT') : formattedDate}
                       </div>
@@ -52,13 +77,16 @@ export const RenderToday = (props) => {
                               style={{
                                 transform: `rotate(${weatherHour.parameters.wd.values}deg) scale(-1, -1)`,
                               }}
-                            />{" "}
+                              />{" "}
                           </span>
                         </React.Fragment>
                       </div>
+                      </Item>
+                      </Stack>
                     </div>
                   );
                 })}
+                <div className="spacer"></div>
               </React.Fragment>
             ) : null;
           })}

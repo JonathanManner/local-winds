@@ -5,7 +5,8 @@ import { coordinates } from "../../utilities/coordinates";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { selectDay } from "../../store/actions/actions";
-import Button from '@mui/material/Button';
+import Switch from '@mui/material/Switch';
+const label = { inputProps: { 'aria-label': 'Switch demo' } };
 // import TextField from '@mui/material/TextField';
 // import Autocomplete from '@mui/material/Autocomplete';
 
@@ -37,7 +38,16 @@ export const Options = () => {
                 handleSelectedDayChange('forecast')
               }
               ><span>{selectedDay === 'forecast' ? 'Idag' : 'I veckan'}</span></button>          */}
-              <Button
+              <Switch 
+              {...label} 
+              defaultChecked color="default"
+              onClick={() =>
+                selectedDay === 'forecast' ?
+                handleSelectedDayChange('today') :
+                handleSelectedDayChange('forecast')
+              }
+              />
+              {/* <Button
               sx={{
                 fontFamily: "Century Gothic",
                 fontSize: 12,
@@ -53,7 +63,7 @@ export const Options = () => {
                 handleSelectedDayChange('today') :
                 handleSelectedDayChange('forecast')
               }
-              variant="contained">{selectedDay === 'forecast' ? 'Idag' : 'I veckan'}</Button>            
+              variant="contained">{selectedDay === 'forecast' ? 'Idag' : 'I veckan'}</Button>             */}
             </div>
           </div>
         </div>
