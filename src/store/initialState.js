@@ -1,9 +1,10 @@
 const initialState = {
     selectedDay: 'forecast',
-    locationID: 48,
+    selectedLocation: null,
     weatherData: [],
     isLoading: false,
     searchTerm: '',
+    locations: [],
 }
 
 export default initialState;

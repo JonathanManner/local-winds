@@ -13,19 +13,7 @@ const saveToLocalStorage = (state) => {
   } 
 };
 
-const loadFromLocalStorage = () => {
-  try {
-    const stateStr = localStorage.getItem('state');
-    return stateStr ? JSON.parse(stateStr) : undefined;
-  } catch (e) {
-    console.error(e);
-    return undefined;
-  }
-};
-
-const persistedStore = loadFromLocalStorage();
-
-const store = createStore(appReducer, persistedStore);
+const store = createStore(appReducer);
 
 store.subscribe(() => {
   saveToLocalStorage(store.getState());
@@ -39,6 +27,7 @@ export const App = () => {
     <div className="app-body">
     <Options />
     </div>
+    <h6 style={{textAlign: "center"}}>weather data gathered from SMHI</h6>
     </Provider>
   )
 }

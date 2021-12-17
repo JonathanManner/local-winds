@@ -10,7 +10,12 @@
     margin-right: 3px;
 }
 
-
+.search-container .dropdown-container {
+    width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 .search-container .dropdown-list {
     background-color: white;

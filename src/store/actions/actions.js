@@ -4,10 +4,10 @@ export const selectDay = (selectedDay) => {
     payload: selectedDay,
   };
 };
-export const selectLocation = (selectedLocationID) => {
+export const selectLocation = (selectedLocation) => {
   return {
     type: "SELECT_LOCATION",
-    payload: selectedLocationID,
+    payload: selectedLocation,
   };
 };
 export const storeWeather = (fetchedWeather) => {
@@ -28,3 +28,9 @@ export const setSearchTerm = (searchTerm) => {
     payload: searchTerm,
   };
 };
+export const updateLocations = (locations) => {
+  return {
+    type: "UPDATE_LOCATIONS",
+    payload: locations,
+  };
+}

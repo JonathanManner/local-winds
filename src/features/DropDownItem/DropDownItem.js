@@ -9,7 +9,7 @@ export const DropDownItem = (props) => {
 
 
     const clearSearch = () => {
-        dispatch(selectLocation(listItem.id));
+        dispatch(selectLocation(listItem));
         dispatch(setSearchTerm(''));
     }
     
