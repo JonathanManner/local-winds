@@ -48,9 +48,11 @@ export const RenderToday = (props) => {
                       <Item
                       className="items"
                       sx={_index % 2 === 0 ? {
+                        color: "black",
                         width: "100%",
                         borderRadius: "0px",
                       } : {
+                        color: "black",
                         width: "100%",
                         borderRadius: "0px",
                         backgroundColor: "rgba(240, 240, 240, 1)",

@@ -1,29 +1,56 @@
 import { React, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { fetchLocations } from "../../utilities/smhi";
+import { updateLocations } from "../../store/actions/actions";
 import "./SearchBar.css";
 import { DropDownItem } from "../DropDownItem/DropDownItem";
 import { setSearchTerm, selectLocation } from "../../store/actions/actions";
 
 export const SearchBar = (props) => {
-  const coordinates = props.coordinates;
   const dispatch = useDispatch();
   const [currentItem, setCurrentItem] = useState(0);
   const searchTerm = useSelector((state) => state.searchTerm);
+  const locations = useSelector((state) => state.locations);
 
-  const filteredItems = coordinates.filter((coordinate) =>
-    coordinate.location.toLowerCase()
-  .includes(searchTerm.toLowerCase()));
+  const filteredItems = locations.filter((location) =>
+    location.location.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  let weatherLocations = [];
+
+  const renderSearchList = (response) => {
+    if (response) {
+      return response.map((responseItem, index) => {
+        return responseItem.country === "Sverige" 
+          ? weatherLocations.push({
+              id: index,
+              location: `${responseItem.place}, ${responseItem.county}`,
+              lon: Math.round(responseItem.lon * 100) / 100,
+              lat: Math.round(responseItem.lat * 100) / 100,
+            })
+          : null;
+      });
+    }
+    return;
+  };
 
   const onSearchInput = (e) => {
     const userInput = e.target.value;
     dispatch(setSearchTerm(userInput));
+    fetchLocations(userInput).then((response) => {
+      renderSearchList(response);
+      dispatch(updateLocations(weatherLocations));
+    });
     setCurrentItem(0);
   };
 
   const handleKeyPress = (e) => {
     const keyPressed = e.key;
     if (searchTerm !== "") {
-      if (keyPressed === "ArrowDown" && currentItem < filteredItems.length - 1) {
+      if (
+        keyPressed === "ArrowDown" &&
+        currentItem < filteredItems.length - 1
+      ) {
         e.preventDefault();
         setCurrentItem((current) => current + 1);
       } else if (keyPressed === "ArrowUp" && currentItem > 0) {
@@ -32,7 +59,7 @@ export const SearchBar = (props) => {
       } else if (keyPressed === "Enter") {
         dispatch(setSearchTerm(""));
         const selectedItem = filteredItems[currentItem];
-        dispatch(selectLocation(selectedItem.id));
+        dispatch(selectLocation(selectedItem));
         setCurrentItem(0);
       }
     }
@@ -55,28 +82,27 @@ export const SearchBar = (props) => {
           <div>
             <div className="dropdown-list">
               {filteredItems.map((coordinate, index) => {
-                  return (
-                    <div 
-                    className="list-item" 
-                    key={"list-item-" + index} 
-                    style={
-                      {
-                        backgroundColor: currentItem === index ? "#daeeff":"",
-                      }}
+                return (
+                  <div
+                    className="list-item"
+                    key={"list-item-" + index}
+                    style={{
+                      backgroundColor: currentItem === index ? "#daeeff" : "",
+                    }}
                     onMouseEnter={() => setCurrentItem(index)}
                     onMouseLeave={() => setCurrentItem(currentItem)}
-                    >
-                      {searchTerm !== "" && (
-                        <div className="dropdown-list-item">
-                          <DropDownItem
-                            location={coordinate}
-                            searchTerm={searchTerm}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+                  >
+                    {searchTerm !== "" && (
+                      <div className="dropdown-list-item">
+                        <DropDownItem
+                          location={coordinate}
+                          searchTerm={searchTerm}
+                        />
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}

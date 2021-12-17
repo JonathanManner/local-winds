@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { isItLoading } from "../../store/actions/actions";
 import { storeWeather } from "../../store/actions/actions";
 import { fetchWeather } from "../../utilities/smhi";
-import { coordinates } from "../../utilities/coordinates";
 import { RenderTomorrow } from "../RenderTomorrow/RenderTomorrow";
 import { RenderToday } from "../RenderToday/RenderToday";
 import "./RenderWeather.css";
@@ -18,18 +17,19 @@ const formatData = (data) => {
 
 export const RenderWeather = (props) => {
   const selectedDay = useSelector(state => state.selectedDay);
-  const locationID = useSelector(state => state.locationID);
-  const { lon, lat } = coordinates[locationID];
+  const selectedLocation = useSelector(state => state.selectedLocation);
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.isLoading);
   const weatherData = useSelector(state => state.weatherData);
 
   useEffect(() => {
+    if(!selectedLocation) return;
     dispatch(isItLoading(true));
-    fetchWeather(lon, lat).then((response) => {
+    fetchWeather(selectedLocation.lon, selectedLocation.lat).then((response) => {
       dispatch(isItLoading(false));
       const tempData = response;
       const sortedData = {};
+      if (tempData === 'error') return;
       for (let i = 0; i < tempData.timeSeries.length; i++) {
         const value = {
           validTime: tempData.timeSeries[i].validTime,
@@ -46,10 +46,10 @@ export const RenderWeather = (props) => {
       dispatch(storeWeather(tempData.futureData));
     });
     
-  }, [lon, lat, dispatch]);
+  }, [selectedLocation, dispatch]);
 
   const renderComponent = () => {
-    if (isLoading) return "Loading...";
+    if (isLoading || !selectedLocation) return "Loading...";
     return (
       <>
         {selectedDay === "today" && (
@@ -62,9 +62,19 @@ export const RenderWeather = (props) => {
     );
   };
 
+  if(!selectedLocation) return (
+    <div>
+    <div className="spacer"></div>
+    <h3 style={{textAlign: "center"}}>Väder</h3>
+    <br></br>
+    <h4 style={{textAlign: "center"}}>Var god sök på valfri ort i sökrutan</h4>
+    <h5 style={{textAlign: "center"}}>(inom Sverige)</h5>
+    <div className="spacer"></div>
+    </div>
+  );
   return (
     <div className="render-weather-wrap">
-      <h3>Väderprognos för {coordinates[locationID].location} {selectedDay === 'forecast' ? 'i veckan' : 'idag'}</h3>
+      <h3>Väderprognos för {selectedLocation.location} {selectedDay === 'forecast' ? 'i veckan' : 'idag'}</h3>
       {renderComponent()}
     </div>
   );

@@ -5,9 +5,7 @@ import { App } from './app/App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <div>
     <App />
-    </div>
   </React.StrictMode>,
   document.getElementById('root')
 ); 

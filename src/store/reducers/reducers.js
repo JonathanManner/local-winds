@@ -10,7 +10,7 @@ const appReducer = (state = initialState, action) => {
     case "SELECT_LOCATION":
       return {
         ...state, 
-        locationID: action.payload };
+        selectedLocation: action.payload };
 
     case "STORE_WEATHER":
       return { 
@@ -26,6 +26,11 @@ const appReducer = (state = initialState, action) => {
       return { 
         ...state, 
         searchTerm: action.payload }; 
+
+    case "UPDATE_LOCATIONS":
+      return {
+        ...state,
+        locations: action.payload };    
 
     default:
       return state;
