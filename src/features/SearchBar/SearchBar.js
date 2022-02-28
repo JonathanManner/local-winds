@@ -5,8 +5,9 @@ import { updateLocations } from "../../store/actions/actions";
 import "./SearchBar.css";
 import { DropDownItem } from "../DropDownItem/DropDownItem";
 import { setSearchTerm, selectLocation } from "../../store/actions/actions";
+import { coordinates } from "../../utilities/coordinates";
 
-export const SearchBar = (props) => {
+export const SearchBar = () => {
   const dispatch = useDispatch();
   const [currentItem, setCurrentItem] = useState(0);
   const searchTerm = useSelector((state) => state.searchTerm);
@@ -17,30 +18,49 @@ export const SearchBar = (props) => {
   );
 
   let weatherLocations = [];
+  // this was used with the locations API endpoint
+  // const renderSearchList = (response) => {
+  //   if (response) {
+  //     return response.map((responseItem, index) => {
+  //       return responseItem.country === "Sverige"
+  //         ? weatherLocations.push({
+  //             id: index,
+  //             location: `${responseItem.place}, ${responseItem.county}`,
+  //             lon: Math.round(responseItem.lon * 100) / 100,
+  //             lat: Math.round(responseItem.lat * 100) / 100,
+  //           })
+  //         : null;
+  //     });
+  //   }
+  //   return;
+  // };
 
-  const renderSearchList = (response) => {
-    if (response) {
-      return response.map((responseItem, index) => {
-        return responseItem.country === "Sverige" 
-          ? weatherLocations.push({
-              id: index,
-              location: `${responseItem.place}, ${responseItem.county}`,
-              lon: Math.round(responseItem.lon * 100) / 100,
-              lat: Math.round(responseItem.lat * 100) / 100,
-            })
-          : null;
-      });
-    }
-    return;
-  };
+  const matchInputWithList = (userInput) => {
+    coordinates.map((coordinate) => {
+      if (coordinate.location.toLowerCase().includes(userInput.toLowerCase())) {
+      weatherLocations.push({
+        id: coordinate.id,
+        location: coordinate.location,
+        lon: coordinate.lon,
+        lat: coordinate.lat
+      })
+      dispatch(updateLocations(weatherLocations));
+    } else {
+        return;
+      }
+    })
+  }
 
   const onSearchInput = (e) => {
     const userInput = e.target.value;
     dispatch(setSearchTerm(userInput));
-    fetchLocations(userInput).then((response) => {
-      renderSearchList(response);
-      dispatch(updateLocations(weatherLocations));
-    });
+    matchInputWithList(userInput);
+    
+    // fetchLocations(userInput).then((response) => {
+    //   renderSearchList(response);
+    //   dispatch(updateLocations(weatherLocations));
+    // });
+
     setCurrentItem(0);
   };
 
@@ -82,6 +102,7 @@ export const SearchBar = (props) => {
           <div>
             <div className="dropdown-list">
               {filteredItems.map((coordinate, index) => {
+                if (index < 10)
                 return (
                   <div
                     className="list-item"
