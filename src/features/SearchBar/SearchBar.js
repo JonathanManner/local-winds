@@ -46,6 +46,7 @@ export const SearchBar = () => {
       })
       return dispatch(updateLocations(weatherLocations));
     }
+    return null;
     })
   }
 
