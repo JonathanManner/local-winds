@@ -122,6 +122,7 @@ export const SearchBar = () => {
                     )}
                   </div>
                 );
+                return null;
               })}
             </div>
           </div>
