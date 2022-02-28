@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchLocations } from "../../utilities/smhi";
+// import { fetchLocations } from "../../utilities/smhi";
 import { updateLocations } from "../../store/actions/actions";
 import "./SearchBar.css";
 import { DropDownItem } from "../DropDownItem/DropDownItem";
@@ -44,10 +44,8 @@ export const SearchBar = () => {
         lon: coordinate.lon,
         lat: coordinate.lat
       })
-      dispatch(updateLocations(weatherLocations));
-    } else {
-        return;
-      }
+      return dispatch(updateLocations(weatherLocations));
+    }
     })
   }
 
