@@ -17,7 +17,7 @@ export const fetchLocations = async (userInput) => {
     const response = await fetch(url);
     if (response.ok) {
       return await response.json();
-    } return 'error, did not retrieve locations';
+    } return 'error, did not retrieve locations';
   } catch (error) {
     console.log(error);
   }
